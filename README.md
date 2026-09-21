@@ -53,14 +53,15 @@ It was developed and tested on **Kylin Linux Advanced Server V10 (Halberd)**, bu
 > Run all commands as **root** or with `sudo`.
 
 ```bash
-# 1. Download the script
-wget https://raw.githubusercontent.com/your-username/your-repo/main/install_seafile.sh
-
+# 1. Download and Pack
+docker pull seafileltd/seafile:13.0-latest seafileltd/seadoc:latest \
+  mariadb:10.11 memcached:1.6 redis:7 caddy:2
+docker save seafileltd/seafile:13.0-latest seafileltd/seadoc:latest \
+  mariadb:10.11 memcached:1.6 redis:7 caddy:2 -o seafile_offline.tar
 # 2. Make it executable
-chmod +x install_seafile.sh
-
+chmod +x seafile_deploy.sh
 # 3. Run it
-sudo ./install_seafile.sh
+sudo ./seafile_deploy.sh
 ```
 
 After a few minutes you will see:
@@ -110,7 +111,7 @@ If you are in a different network environment where that mirror is unreachable, 
 ## 📂 Repository Structure
 
 ```
-├── install_seafile.sh      # The one‑click deployment script
+├── seafile_deploy.sh      # The one‑click deployment script
 └── README.md               # This file
 ```
 
